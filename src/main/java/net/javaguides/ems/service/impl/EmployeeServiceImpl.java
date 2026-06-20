@@ -40,7 +40,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee updateEmploye(Long id, EmployeeDto employeeDto) {
+    public Employee updateEmployee(Long id, EmployeeDto employeeDto) {
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(()-> new EmployeeNotFoundException("Employee not found."));
         employee.setFirstName(employeeDto.firstName());
@@ -52,5 +52,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee;
     }
 
+    @Override
+    public String deleteEmployee(Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(()-> new EmployeeNotFoundException("Employee not found."));
+
+        employeeRepository.delete(employee);
+        return "Employee successfully deleted.";
+    }
 
 }

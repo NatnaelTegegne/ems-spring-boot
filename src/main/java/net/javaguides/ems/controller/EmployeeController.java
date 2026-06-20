@@ -10,13 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/employees")
+@RequestMapping("/api/employee")
 public class EmployeeController {
 
     private EmployeeService employeeService;
@@ -35,7 +35,7 @@ public class EmployeeController {
 
     }
 
-    @GetMapping("/allEmployees")
+    @GetMapping("/employees")
     public ResponseEntity<List<EmployeeDto>> getAllEmployees() {
         List<Employee> employees = employeeService.getAllEmployees();
         List<EmployeeDto> employeeDtos = employees.stream()
@@ -46,11 +46,18 @@ public class EmployeeController {
     }
 
     // Allowing the user to access the whole EmployeeDto gives them the option to update every information
-    @PutMapping("/{id}/update")
+    @PutMapping("/{id}")
     public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable Long id, @RequestBody EmployeeDto employeeDto) {
-        Employee employee = employeeService.updateEmploye(id, employeeDto);
+        Employee employee = employeeService.updateEmployee(id, employeeDto);
         EmployeeDto updatedEmployeeDto = EmployeeMapper.mapToEmployeeDto(employee);
 
         return ResponseEntity.ok(updatedEmployeeDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable Long id) {
+        String employeeStatus = employeeService.deleteEmployee(id);
+
+        return ResponseEntity.ok(employeeStatus);
     }
 }
