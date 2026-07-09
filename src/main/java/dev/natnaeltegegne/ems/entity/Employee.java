@@ -1,4 +1,4 @@
-package net.javaguides.ems.entity;
+package dev.natnaeltegegne.ems.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

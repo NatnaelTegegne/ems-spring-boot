@@ -1,4 +1,4 @@
-package net.javaguides.ems.dto;
+package dev.natnaeltegegne.ems.dto;
 
 public record EmployeeDto(Long id,
                           String firstName,

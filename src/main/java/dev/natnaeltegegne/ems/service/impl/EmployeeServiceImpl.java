@@ -1,12 +1,12 @@
-package net.javaguides.ems.service.impl;
+package dev.natnaeltegegne.ems.service.impl;
 
 import lombok.AllArgsConstructor;
-import net.javaguides.ems.dto.EmployeeDto;
-import net.javaguides.ems.entity.Employee;
-import net.javaguides.ems.exception.EmployeeNotFoundException;
-import net.javaguides.ems.mapper.EmployeeMapper;
-import net.javaguides.ems.repository.EmployeeRepository;
-import net.javaguides.ems.service.EmployeeService;
+import dev.natnaeltegegne.ems.dto.EmployeeDto;
+import dev.natnaeltegegne.ems.entity.Employee;
+import dev.natnaeltegegne.ems.exception.EmployeeNotFoundException;
+import dev.natnaeltegegne.ems.mapper.EmployeeMapper;
+import dev.natnaeltegegne.ems.repository.EmployeeRepository;
+import dev.natnaeltegegne.ems.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

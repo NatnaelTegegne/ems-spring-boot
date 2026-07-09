@@ -1,6 +1,6 @@
-package net.javaguides.ems.repository;
+package dev.natnaeltegegne.ems.repository;
 
-import net.javaguides.ems.entity.Employee;
+import dev.natnaeltegegne.ems.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

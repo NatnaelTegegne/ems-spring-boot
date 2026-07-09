@@ -1,7 +1,7 @@
-package net.javaguides.ems.service;
+package dev.natnaeltegegne.ems.service;
 
-import net.javaguides.ems.dto.EmployeeDto;
-import net.javaguides.ems.entity.Employee;
+import dev.natnaeltegegne.ems.dto.EmployeeDto;
+import dev.natnaeltegegne.ems.entity.Employee;
 
 import java.util.List;
 

@@ -1,8 +1,7 @@
-package net.javaguides.ems.mapper;
+package dev.natnaeltegegne.ems.mapper;
 
-import net.javaguides.ems.dto.EmployeeDto;
-import net.javaguides.ems.entity.Employee;
-import org.springframework.stereotype.Component;
+import dev.natnaeltegegne.ems.dto.EmployeeDto;
+import dev.natnaeltegegne.ems.entity.Employee;
 
 
 public class EmployeeMapper {

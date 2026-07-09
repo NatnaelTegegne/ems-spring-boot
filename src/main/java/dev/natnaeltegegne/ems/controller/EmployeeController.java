@@ -1,10 +1,10 @@
-package net.javaguides.ems.controller;
+package dev.natnaeltegegne.ems.controller;
 
 import lombok.AllArgsConstructor;
-import net.javaguides.ems.dto.EmployeeDto;
-import net.javaguides.ems.entity.Employee;
-import net.javaguides.ems.mapper.EmployeeMapper;
-import net.javaguides.ems.service.EmployeeService;
+import dev.natnaeltegegne.ems.dto.EmployeeDto;
+import dev.natnaeltegegne.ems.entity.Employee;
+import dev.natnaeltegegne.ems.mapper.EmployeeMapper;
+import dev.natnaeltegegne.ems.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
