@@ -5,6 +5,9 @@ WORKDIR /app
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 
+# grant execution permissions to the Maven wrapper
+RUN chmod +x ./mvnw
+
 RUN ./mvnw dependency:go-offline
 COPY src ./src
 RUN ./mvnw clean package -DskipTests
