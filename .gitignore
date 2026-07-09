@@ -18,8 +18,10 @@ target/
 *.iws
 *.iml
 *.ipr
+### Environment Variables
 .env
 
+roadmap.md
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
