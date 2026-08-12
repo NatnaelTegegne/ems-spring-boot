@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 
 
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/employee")
 public class EmployeeController {
