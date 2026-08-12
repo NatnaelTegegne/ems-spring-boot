@@ -22,6 +22,8 @@ target/
 .env
 
 roadmap.md
+LESSONS_LEARNED.md
+CODE_REVIEW.md
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
