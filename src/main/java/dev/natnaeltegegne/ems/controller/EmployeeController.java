@@ -2,15 +2,13 @@ package dev.natnaeltegegne.ems.controller;
 
 import lombok.AllArgsConstructor;
 import dev.natnaeltegegne.ems.dto.EmployeeDto;
-import dev.natnaeltegegne.ems.entity.Employee;
-import dev.natnaeltegegne.ems.mapper.EmployeeMapper;
 import dev.natnaeltegegne.ems.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import static org.springframework.http.ResponseEntity.ok;
 
 
 @AllArgsConstructor
@@ -22,13 +20,13 @@ public class EmployeeController {
 
     @PostMapping()
     public ResponseEntity<EmployeeDto> createEmployee(@RequestBody EmployeeDto employeeDto) {
-        Employee employee= employeeService.createEmployee(employeeDto);
-        return new ResponseEntity<>(EmployeeMapper.mapToEmployeeDto(employee), HttpStatus.CREATED);
+        EmployeeDto employee= employeeService.createEmployee(employeeDto);
+        return new ResponseEntity<>(employee, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<EmployeeDto> getEmployee(@PathVariable Long id) {
-        EmployeeDto employeeDto = EmployeeMapper.mapToEmployeeDto(employeeService.getEmployee(id));
+        EmployeeDto employeeDto = employeeService.getEmployee(id);
 
         return ResponseEntity.ok(employeeDto);
 
@@ -36,27 +34,24 @@ public class EmployeeController {
 
     @GetMapping("/employees")
     public ResponseEntity<List<EmployeeDto>> getAllEmployees() {
-        List<Employee> employees = employeeService.getAllEmployees();
-        List<EmployeeDto> employeeDtos = employees.stream()
-                .map(employee -> EmployeeMapper.mapToEmployeeDto(employee))
-                .collect(Collectors.toList());
+        List<EmployeeDto> employeeDtos = employeeService.getAllEmployees();
 
-        return new ResponseEntity<>(employeeDtos, HttpStatus.OK);
+
+        return ResponseEntity.ok(employeeDtos);
     }
 
     // Allowing the user to access the whole EmployeeDto gives them the option to update every information
     @PutMapping("/{id}")
     public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable Long id, @RequestBody EmployeeDto employeeDto) {
-        Employee employee = employeeService.updateEmployee(id, employeeDto);
-        EmployeeDto updatedEmployeeDto = EmployeeMapper.mapToEmployeeDto(employee);
+        EmployeeDto updatedEmployeeDto = employeeService.updateEmployee(id, employeeDto);
 
-        return ResponseEntity.ok(updatedEmployeeDto);
+        return ok(updatedEmployeeDto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteEmployee(@PathVariable Long id) {
         String employeeStatus = employeeService.deleteEmployee(id);
 
-        return ResponseEntity.ok(employeeStatus);
+        return ok(employeeStatus);
     }
 }

@@ -23,10 +23,10 @@ class EmployeeControllerTest {
 
     @Test
     void getById_whenMissing_currentlyReturns500() throws Exception {
-        when(employeeService.getEmployee(999L))
+        when(employeeService.getEmployee(1L))
                 .thenThrow(new EmployeeNotFoundException("Employee not found."));
 
         mockMvc.perform(get("/api/employee/1"))
-                .andExpect(status().isInternalServerError());   // 500, today's WRONG behavior
+                .andExpect(status().isNotFound());   // 500, today's WRONG behavior
     }
 }

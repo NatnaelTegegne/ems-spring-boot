@@ -10,6 +10,7 @@ import dev.natnaeltegegne.ems.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -19,28 +20,32 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
     @Override
-    public Employee createEmployee(EmployeeDto employeeDto) {
+    public EmployeeDto createEmployee(EmployeeDto employeeDto) {
         Employee employee = EmployeeMapper.mapToEmployee(employeeDto);
         employeeRepository.save(employee);
-        return employee;
+        return EmployeeMapper.mapToEmployeeDto(employee);
     }
 
     @Override
-    public Employee getEmployee(Long id) {
+    public EmployeeDto getEmployee(Long id) {
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(()-> new EmployeeNotFoundException("Employee not found."));
 
-        return employee;
+        return EmployeeMapper.mapToEmployeeDto(employee);
     }
 
     @Override
-    public List<Employee> getAllEmployees() {
-        return employeeRepository.findAll();
+    public List<EmployeeDto> getAllEmployees() {
+        List<Employee> employees =  employeeRepository.findAll();
+        List<EmployeeDto> employeeDtos = employees.stream().map(employee -> EmployeeMapper.mapToEmployeeDto(employee))
+                .collect(Collectors.toList());
+
+        return employeeDtos;
 
     }
 
     @Override
-    public Employee updateEmployee(Long id, EmployeeDto employeeDto) {
+    public EmployeeDto updateEmployee(Long id, EmployeeDto employeeDto) {
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(()-> new EmployeeNotFoundException("Employee not found."));
         employee.setFirstName(employeeDto.firstName());
@@ -49,7 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         //save back to the db
         employeeRepository.save(employee);
-        return employee;
+        return EmployeeMapper.mapToEmployeeDto(employee);
     }
 
     @Override
